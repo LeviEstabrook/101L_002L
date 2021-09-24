@@ -1,2 +1,5 @@
 # 101L_002L
- Levi Lindskog, Python Programming Skills
+ Name: Levi Lindskog
+ Preferred Name: Levi Estabrook
+ Contact: lhl8r5@umsystem.edu
+ Designation: UMKC Student
