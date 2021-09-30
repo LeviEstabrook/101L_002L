@@ -8,7 +8,6 @@ PROBLEM:
 Program must be able to guess user's number between 1 and 100 inclusive.
 Only user input will be of the user's number's remainder when divided by 3, 5, and 7.
 After guessing correctly, program must ask user whether they wish to continue playing. 
-Y or N are the only valid responses to this.
 '''
 
 #ALGORITHM
@@ -17,6 +16,7 @@ print('Welcome to the Flarsheim Guesser!\n')
 
 playing = True
 while playing == True:
+
     print('Please think of a number between and including 1 and 100.\n')
 
     valid3 = None
@@ -29,7 +29,7 @@ while playing == True:
         else:
             print()
             valid3 = True
-    
+
     valid5 = None
     while valid5 != True:
         div5 = int(input('What is the remainder when your number is divided by 5? '))
@@ -40,7 +40,7 @@ while playing == True:
         else:
             print()
             valid5 = True
-    
+
     valid7 = None
     while valid7 != True:
         div7 = int(input('What is the remainder when your number is divided by 7? '))
@@ -53,7 +53,7 @@ while playing == True:
             valid7 = True
 
     list1 = []
-    for x in range(0,101):
+    for x in range(1,101):
         if x % 3 == div3:
             list1.append(x)
 
@@ -78,10 +78,15 @@ while playing == True:
     validplay = None
     while validplay == None:
         play_again = input('Do you want to play again? Y to continue, N to quit  ==> ')
-        if play_again == ('n' or 'N'):
+        if play_again.lower() == 'n':
             validplay = True
             playing = False
-        elif play_again == ('y' or 'Y'):
+        elif play_again.lower() == 'y':
             validplay = True
             print()
-    
+
+'''
+ERROR HANDLING:
+I added in a failsafe where if the remainders input by the user were valid but belonged to a number not between 1 and 100, 
+then I assign user_number to None and ouput a message to the user.
+'''
