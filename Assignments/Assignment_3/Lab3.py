@@ -1,6 +1,6 @@
 '''
 CS 101 Lab
-Program #2
+Program #3
 Levi Lindskog is my name in Canvas, but I go by Levi Estabrook.
 lhl8r5@umsystem.edu
 
@@ -12,8 +12,6 @@ Y or N are the only valid responses to this.
 '''
 
 #ALGORITHM
-
-
 
 print('Welcome to the Flarsheim Guesser!\n')
 
@@ -67,6 +65,41 @@ for s in range(1,101):
         S_rem5.append(s)
     elif s % 7 == 6:
         S_rem6.append(s)
+
+
+
+def Flarsheim(rem3,rem5,rem7):
+    if rem3 == 0:
+        Flarsheimlist = T_rem0
+    elif rem3 == 1:
+        Flarsheimlist = T_rem1
+    elif rem3 == 2:
+        Flarsheimlist = T_rem2
+    if rem5 == 0:
+        Flarsheimlist.append(F_rem0)
+    elif rem5 == 1:
+        Flarsheimlist.append(F_rem1)
+    elif rem5 == 2:
+        Flarsheimlist.append(F_rem2)
+    elif rem5 == 3:
+        Flarsheimlist.append(F_rem3)
+    elif rem5 == 4:
+        Flarsheimlist.append(F_rem4)
+    if rem7 == 0:
+        Flarsheimlist.append(S_rem0)
+    elif rem7 == 1:
+        Flarsheimlist.append(S_rem1)
+    elif rem7 == 2:
+        Flarsheimlist.append(S_rem2)
+    elif rem7 == 3:
+        Flarsheimlist.append(S_rem3)
+    elif rem7 == 4:
+        Flarsheimlist.append(S_rem4)
+    elif rem7 == 5:
+        Flarsheimlist.append(S_rem5)
+    elif rem7 == 6:
+        Flarsheimlist.append(S_rem6)
+    print(Flarsheimlist)
 '''
 print(T_rem0)
 print(T_rem1)
@@ -119,4 +152,4 @@ while playing == True:
             print('The value entered must be less than 7')
         else:
             valid7 = True
-
+    Flarsheim(div3,div5,div7)
