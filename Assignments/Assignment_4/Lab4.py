@@ -14,24 +14,23 @@ If the user matches 2 numbers, they will win 3 times their wager.
 
 #ALGORITHM
 
-import math
 import random
 
-# take 1
+# take 2
 def play_again():
     ''' Asks the user if they want to play again, returns False if N or NO, and True if Y or YES. Keeps asking until they respond yes '''
     while True:
         play = input('Do you want to play again? ==> ').lower()
-        if play == 'y' or 'yes':
+        if (play == 'y') or (play == 'yes'):
             return True
-        elif play == 'n' or 'no':
+        elif (play == 'n') or (play == 'no'):
             return False
         else:
             print('\nYou must enter Y/YES/N/NO to continue.  Please try again')
 
 # take 1
 def get_wager(bank):
-    ''' Asks the user for a wager chip amount.  Continues to ask if they result is <= 0 or greater than the amount they have '''
+    ''' Asks the user for a wager chip amount. Continues to ask if they result is <= 0 or greater than the amount they have '''
     while True:
         wager = int(input('How many chips do you want to wager? ==> '))
         if wager <= 0:
@@ -41,19 +40,23 @@ def get_wager(bank):
         else:
             return wager
             
-
-def get_slot_results() -> tuple:
+# take 1
+def get_slot_results():
     ''' Returns the result of the slot pull '''
+    first = random.randint(1,10)
+    second = random.randint(1,10)
+    third = random.randint(1,10)
+    return first, second, third
 
-
-    return 1, 2, 3
-
-
-def get_matches(reela, reelb, reelc) -> int:
+# take 1
+def get_matches(reela, reelb, reelc):
     ''' Returns 3 for all 3 match, 2 for 2 alike, and 0 for none alike. '''
-
-
-    return 0
+    if (reela == reelb) and (reela == reelc):
+        return 3
+    elif ((reela == reelb) or (reela == reelc)) or (reelb == reelc):
+        return 2
+    else:
+        return 0
 
 # take 1
 def get_bank():
@@ -62,13 +65,10 @@ def get_bank():
         bank = int(input('How many chips do you want to start with? ==> '))
         if bank <= 0:
             print('Too low a value, you can only choose 1 - 100 chips')
-            continue
         elif bank > 100:
             print('Too high a value, you can only choose 1 - 100 chips')
-            continue
         else:
             return bank
-
 
 # take 1
 def get_payout(wager, matches):
@@ -85,27 +85,33 @@ if __name__ == "__main__":
 
     playing = True
     while playing:
-
+        
+        spins = 0
         bank = get_bank()
-
-        while bank > 0:  # Replace with condition for if they still have money.
+        start_money = bank
+        max = start_money
+        while bank > 0:
             
             wager = get_wager(bank)
 
             reel1, reel2, reel3 = get_slot_results()
 
+            spins += 1
             matches = get_matches(reel1, reel2, reel3)
             payout = get_payout(wager, matches)
             bank = bank + payout
+
+            if bank > max:
+                max = bank
 
             print("Your spin", reel1, reel2, reel3)
             print("You matched", matches, "reels")
             print("You won/lost", payout)
             print("Current bank", bank)
             print()
-           
-        print("You lost all", 0, "in", 0, "spins")
-        print("The most chips you had was", 0)
+        
+        print("You lost all", start_money, "in", spins, "spins")
+        print("The most chips you had was", max)
         playing = play_again()
 
 
