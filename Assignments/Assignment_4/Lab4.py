@@ -39,7 +39,7 @@ def get_wager(bank):
             print('The wager amount cannot be greater than how much you have.', bank)
         else:
             return wager
-            
+
 # take 1
 def get_slot_results():
     ''' Returns the result of the slot pull '''
@@ -70,13 +70,13 @@ def get_bank():
         else:
             return bank
 
-# take 1
+# take 2
 def get_payout(wager, matches):
     ''' Returns how much the payout is.. 10 times the wager if 3 matched, 3 times the wager if 2 match, and negative wager if 0 match '''
     if matches == 3:
-        return wager*10
+        return wager*9
     elif matches == 2:
-        return wager*3
+        return wager*2
     else:
         return -wager     
 
@@ -85,13 +85,13 @@ if __name__ == "__main__":
 
     playing = True
     while playing:
-        
+
         spins = 0
         bank = get_bank()
         start_money = bank
         max = start_money
         while bank > 0:
-            
+
             wager = get_wager(bank)
 
             reel1, reel2, reel3 = get_slot_results()
@@ -109,7 +109,7 @@ if __name__ == "__main__":
             print("You won/lost", payout)
             print("Current bank", bank)
             print()
-        
+
         print("You lost all", start_money, "in", spins, "spins")
         print("The most chips you had was", max)
         playing = play_again()
@@ -119,5 +119,10 @@ if __name__ == "__main__":
 
 '''
 ERROR HANDLING:
-
+On payout, user receives either 3 times their wager or 10, depending on whether they rolled 2 matches or 3.
+The initial wager is included as a part of this payout, meaning in calculation the program was
+incorrectly letting the user win their wager back plus 3 or 10 times it.
+This logic error was handled by tweaking the get_payout function to multiply the wager by 2 or 9, instead of 3 or 10 respectively.
+The end result during payout is the bank retaining the wager initially bet, and additionally gaining 2 or 9 times the wager.
+There was no logic error found when calculating payout upon rolling 0 matches.
 '''
