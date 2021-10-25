@@ -15,7 +15,9 @@ and the Program must do the same for an output file.
 Program must be able to handle errors from incorrect values that may arise.
 
 ERROR HANDLING:
-
+Was encountering the FileNotFoundError with vehicles2.txt in the Assignment_7 folder alongside Lab7.py.
+Fixed Error by moving txt files to sit only in the 101L_002L folder.
+That was very confusing, I would have liked it of we had gone over that during the Monday Meeting.
 
 '''
 
@@ -39,13 +41,18 @@ def open_file(message, mode='r'):
     while True:
         try:
             user_input = input(message)
+            if mode == 'w':
+                try:
+                    test = open(user_input, "r")
+                    test.close()
+                except IOError:
+                    print('There is an IO Error',user_input)
+                    continue
             file = open(user_input, mode)
             print()
             return file
         except FileNotFoundError:
             print('Could not open file',user_input)
-        except IOError:
-            print('There is an IO Error',user_input)
 
 
 mpg = get_mpg()
