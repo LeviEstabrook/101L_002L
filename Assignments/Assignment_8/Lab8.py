@@ -13,33 +13,11 @@ Calculate and display the min, max, mean, and std for list of Tests and Assignme
 Quit.
 
 ERROR HANDLING:
-
-
+Program's remove_score function wouldn't print "Could not find that score to remove"
+Fixed by adding a flag variable and editted an elif to an else
 '''
 
 #ALGORITHM
-
-'''
-Grade Menu
-1 - Add Test
-2 - Remove Test
-3 - Clear Tests
-4 - Add Assignment
-5 - Remove Assignment
-6 - Clear Assignments
-D - Display Scores
-Q - Quit
-
-==> d
-
-Type               #       min       max       avg       std
-============================================================
-Tests              0       n/a       n/a       n/a       n/a
-Programs           0       n/a       n/a       n/a       n/a
-
-The weighted scores is       0.00
-
-'''
 
 def menu_select():
     print(
@@ -148,11 +126,11 @@ def remove_score(selection):
                 if score in test_scores_list:
                     test_scores_list.remove(score)
                     flag+=1
-            elif selection == '5':
+            else:
                 if score in assignment_scores_list:
                     assignment_scores_list.remove(score)
                     flag+=1
-            elif flag == 0:
+            if flag == 0:
                 print('Could not find that score to remove')
             return
         except ValueError:
