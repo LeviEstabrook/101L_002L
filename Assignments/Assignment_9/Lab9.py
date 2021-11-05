@@ -12,7 +12,7 @@ Program must ask user to input an offense and output a formatted report
 of zipcodes and how many times the offense occurs in that zipcode.
 
 ERROR HANDLING:
-
+No Errors encountered. :)
 '''
 
 #ALGORITHM
@@ -98,12 +98,32 @@ if __name__ == "__main__":
     #print(offense_dict)
     #print(offense_by_zip)
 
+    month_offenses = 0
+    for m in reported_month_dict:
+        if reported_month_dict[m] > month_offenses:
+            month_offenses = reported_month_dict[m]
+            month = month_from_number(m)
     print('The month with the highest # of crimes is {} with {} offenses'.format(month,month_offenses))
+
+    offenses_num = 0
+    for o in offense_dict:
+        if offense_dict[o] > offenses_num:
+            offenses_num = offense_dict[o]
+            offense = o
     print('The offense with the highest # of crimes is {} with {} offenses\n'.format(offense,offenses_num))
 
     while True:
         try:
             user_input_offense = input('Enter an offense: ')
-            
+            if user_input_offense in offense_dict:
+                break
+            else:
+                raise KeyError
         except KeyError:
             print('Not a valid offense found, please try again')
+    print()
+    print(user_input_offense, 'offenses by Zip Code')
+    print('Zip Code            # Offenses')
+    print('='*30)
+    for z in offense_by_zip[user_input_offense]:
+        print('{:<10s}{:>20d}'.format(z,offense_by_zip[user_input_offense][z]))
