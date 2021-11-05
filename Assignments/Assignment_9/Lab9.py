@@ -34,6 +34,7 @@ def read_in_file(filename=None):
             for line in file_csv:
                 listlist.append(line)
             file.close()
+            print()
             return listlist
         except FileNotFoundError:
             print('Could not find the file specified. {} not found'.format(filename))
@@ -97,4 +98,12 @@ if __name__ == "__main__":
     #print(offense_dict)
     #print(offense_by_zip)
 
-    
+    print('The month with the highest # of crimes is {} with {} offenses'.format(month,month_offenses))
+    print('The offense with the highest # of crimes is {} with {} offenses\n'.format(offense,offenses_num))
+
+    while True:
+        try:
+            user_input_offense = input('Enter an offense: ')
+            
+        except KeyError:
+            print('Not a valid offense found, please try again')
