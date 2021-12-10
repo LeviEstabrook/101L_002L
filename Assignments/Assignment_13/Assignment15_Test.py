@@ -37,14 +37,19 @@ class Grade_Test(unittest.TestCase):
 
     def test_average_returns_nan(self):
         result = Grades.average([])
-        self.assertIs(result, math.nan, "The average function should return math.nan")
+        self.assertIs(result, math.nan, "The average function should return nan")
     
     def test_median_one(self):
-        pass
+        result = Grades.median([2,5,1])
+        self.assertEqual(result, 2, "The median function should return 2")
 
     def test_median_two(self):
-        pass
-
+        result = Grades.median([5,2,1,3])
+        self.assertEqual(result, 2.5, "The median function should return 2.5")
     
+    def test_median_raises_ValueError(self):
+        with self.assertRaises(ValueError):
+            result = Grades.median([])
+
 
 unittest.main()
